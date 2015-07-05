@@ -1,4 +1,8 @@
 //
+// This file (and all other Swift source files in the Sources directory of this playground) will be precompiled into a framework which is automatically made available to Mirror.playground.
+//
+
+//
 //  File.swift
 //  Mirror
 //
@@ -8,6 +12,16 @@
 
 import Foundation
 
+func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element) -> Bool) -> S.Generator.Element? {
+  
+  for value in s {
+    if condition(value) {
+      return value
+    }
+  }
+  return nil
+}
+
 public struct Mirror<T> {
   public typealias MirrorItem = (key: String, data: MirrorType)
   private let mirror: MirrorType
@@ -16,7 +30,7 @@ public struct Mirror<T> {
     mirror = reflect(x)
   }
   
-//MARK: -
+  //MARK: -
   public var names: [String] {
     return map(self) { $0.key }
   }
@@ -29,18 +43,18 @@ public struct Mirror<T> {
     return map(self) { $0 }
   }
   
-//MARK: -
+  //MARK: -
   public subscript (key: String) -> Any? {
-      let res = findFirst(self) { $0.key == key }
-      return res.map { $0.data.value }
-   }
+    let res = findFirst(self) { $0.key == key }
+    return res.map { $0.data.value }
+  }
   
   public func get<U>(key: String) -> U? {
     let res = findFirst(self) { $0.key == key }
     return res.flatMap { $0.data.value as? U }
   }
   
-//MARK: -
+  //MARK: -
   public var toDictionary: [String : Any] {
     
     var result: [String : Any] = [ : ]
@@ -60,7 +74,7 @@ public struct Mirror<T> {
     
     return result
   }
-
+  
   
   
   

@@ -17,6 +17,12 @@ struct A {
   let tupNam: (x: Int, y: Int)
 }
 
+struct Person {
+  let name: String
+  var age: Int
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -24,6 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+    inspectPerson()
+        return true
+  }
+  
+  func inspectPerson() {
+    var person = Person(name: "Jon", age: 27)
+    let mirror = Mirror(person)
+
+    println(mirror.names)
+    println(mirror.values)
+    println(mirror["name"])
+  }
+  
+  func inspectElse() {
     let a = A(name: "", val: 10, maybe: nil, tup: (1, 2),  tupNam: (x: 1, y: 2))
     let mirror = Mirror(a)
     
@@ -46,8 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       k
       v
     }
-    return true
+
   }
+
+  
 }
 
 

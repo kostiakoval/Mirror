@@ -54,6 +54,21 @@ class MirrorSpec: QuickSpec {
         expect(dic["name"] as? String) == "Sara"
         expect(dic["age"] as? Int) == 24
       }
+      
+      context("The Collectio type") {
+       
+        it("has a generator") {
+          var generator = mirror.generate()
+          let first = generator.next()
+          let second = generator.next()
+          let third = generator.next()
+        }
+        
+        it("") {
+          
+        }
+        
+      }
     }
   }
 }

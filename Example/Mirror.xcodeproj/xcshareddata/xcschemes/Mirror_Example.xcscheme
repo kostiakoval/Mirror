@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Mirror.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B55457691B4988C5009AEFFD"
+               BuildableName = "TestAATests.xctest"
+               BlueprintName = "TestAATests"
+               ReferencedContainer = "container:Mirror.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
                BuildableName = "Mirror_Tests.xctest"
                BlueprintName = "Mirror_Tests"
+               ReferencedContainer = "container:Mirror.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B55457691B4988C5009AEFFD"
+               BuildableName = "TestAATests.xctest"
+               BlueprintName = "TestAATests"
                ReferencedContainer = "container:Mirror.xcodeproj">
             </BuildableReference>
          </TestableReference>

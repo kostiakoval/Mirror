@@ -11,6 +11,31 @@ Swift objects Reflection
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+```swift
+struct Person {
+  let name: String
+  var age: Int
+}
+
+var person = Person(name: "Jon", age: 27)
+let mirror = Mirror(person)
+```
+
+```swift
+mirror.names  
+//["name", "age"]
+```
+
+```swift
+mirror.values
+//["Jon", 27]
+```
+
+```swift 
+mirror["name"] // "Jon"
+mirror["age"]  // 27
+```
+
 ## Requirements
 - Swift 1.2
 
