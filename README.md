@@ -1,6 +1,6 @@
 # Mirror
 
-[![CI Status](http://img.shields.io/travis/Konstantin Koval/Mirror.svg?style=flat)](https://travis-ci.org/Konstantin Koval/Mirror)
+[![CI Status](http://img.shields.io/travis/kostiakoval/Mirror.svg?style=flat)](https://travis-ci.org/kostiakoval/Mirror)
 [![Version](https://img.shields.io/cocoapods/v/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![License](https://img.shields.io/cocoapods/l/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![Platform](https://img.shields.io/cocoapods/p/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
