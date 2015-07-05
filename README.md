@@ -5,11 +5,14 @@
 [![License](https://img.shields.io/cocoapods/l/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![Platform](https://img.shields.io/cocoapods/p/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 
+Swift objects Reflection
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+- Swift 1.2
 
 ## Installation
 
@@ -22,7 +25,7 @@ pod "Mirror"
 
 ## Author
 
-Konstantin Koval, konstantin@rocketfarm.no
+Kostiantyn Koval, konstantin.koval1@gmail.com
 
 ## License
 
