@@ -59,15 +59,24 @@ class MirrorSpec: QuickSpec {
        
         it("has a generator") {
           var generator = mirror.generate()
-          let first = generator.next()
-          let second = generator.next()
-          let third = generator.next()
-        }
-        
-        it("") {
+          var next = generator.next()
+          expect(next?.key) == "name"
           
+          next = generator.next()
+          expect(next?.key) == "age"
+          
+          expect(generator.next()).to(beNil())
         }
         
+        it("has count") {
+          expect(count(mirror)) == 2
+        }
+        it("has int subcript") {
+          expect(mirror[0].key) == "name"
+          expect(mirror[0].data.value as? String ) == "Sara"
+          expect(mirror[1].key) == "age"
+          expect(mirror[1].data.value as? Int) == 24
+        }
       }
     }
   }
