@@ -54,8 +54,11 @@ class MirrorSpec: QuickSpec {
         expect(dic["name"] as? String) == "Sara"
         expect(dic["age"] as? Int) == 24
       }
+    }
+  }
+}
 
-      
+/*
       it("can get children mirrors") {
         
         
@@ -63,9 +66,9 @@ class MirrorSpec: QuickSpec {
       
      
       
-//      it("will eventually fail") {
-//        expect("time").toEventually( equal("done") )
-//      }
+      it("will eventually fail") {
+        expect("time").toEventually( equal("done") )
+      }
       
       context("these will pass") {
         
@@ -91,7 +94,4 @@ class MirrorSpec: QuickSpec {
             done()
           }
         }
-      }
-    }
-  }
-}
+      }*/
