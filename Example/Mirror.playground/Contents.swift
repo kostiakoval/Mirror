@@ -27,4 +27,6 @@ mirror.values
 mirror["name"]
 mirror["age"]
 
+mirror.toDictionary
+
 

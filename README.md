@@ -36,6 +36,11 @@ mirror["name"] // "Jon"
 mirror["age"]  // 27
 ```
 
+```swift 
+mirror.toDictionary
+//["age": 27, "name": "Jon"]
+```
+
 ## Requirements
 - Swift 1.2
 
