@@ -10,9 +10,12 @@ import Foundation
 
 public struct Mirror<T> {
   public typealias MirrorItem = (key: String, data: MirrorType)
+
   private let mirror: MirrorType
+  private var instance: T
   
   public init (_ x: T) {
+    instance = x
     mirror = reflect(x)
   }
   
@@ -31,9 +34,9 @@ public struct Mirror<T> {
   
 //MARK: -
   public subscript (key: String) -> Any? {
-      let res = findFirst(self) { $0.key == key }
-      return res.map { $0.data.value }
-   }
+    let res = findFirst(self) { $0.key == key }
+    return res.map { $0.data.value }
+  }
   
   public func get<U>(key: String) -> U? {
     let res = findFirst(self) { $0.key == key }
@@ -60,44 +63,6 @@ public struct Mirror<T> {
     
     return result
   }
-
-  
-  
-  
-  //  func value(instance: T, key: String) -> Any? {
-  //    var result: Any? = nil
-  //
-  //    iterate { childKey, childVal in
-  //      if childKey == key {
-  //        result = childVal.value
-  //      }
-  //      return
-  //    }
-  //    return result
-  //  }
-  
-  
-  func setValue<U>(instance: T, value: U) {
-    
-    //    iterate { childKey, childMirror in
-    //      if childKey == key {
-    //        return childMirror.value
-    //      }
-    //    }
-    //    return nil
-  }
-  
-  /*
-  
-  static func fromDictionary<T : Encodable>(instance: NSDictionary) -> T {
-  let result = T()
-  for (key, val) in instance {
-  //      result <-- instance[key]
-  }
-  
-  return result
-  }
-  */
 }
 
 extension Mirror : CollectionType, SequenceType {
@@ -117,7 +82,6 @@ extension Mirror : CollectionType, SequenceType {
   public subscript (i: Int) -> MirrorItem {
     return mirror[i]
   }
-  
 }
 
 infix operator --> {}
