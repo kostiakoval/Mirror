@@ -10,19 +10,17 @@
 Pod::Spec.new do |s|
   s.name             = "Mirror"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Mirror."
+  s.summary          = "Mirror - the most simle runtime reflection API in Swift."
   s.description      = <<-DESC
-                       An optional longer description of Mirror
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                        Mirror provides a nice API for working with MirrorType
+                        and reflect functions in Swift
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Mirror"
+  s.homepage         = "https://github.com/kostiakoval/Mirror"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Konstantin Koval" => "konstantin@rocketfarm.no" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/Mirror.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/kostiakoval/Mirror.git", :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/kostiakoval'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
