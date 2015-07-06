@@ -71,12 +71,14 @@ class MirrorSpec: QuickSpec {
         it("has count") {
           expect(count(mirror)) == 2
         }
-        it("has int subcript") {
-          expect(mirror[0].name) == "name"
-          expect(mirror[0].value as? String ) == "Sara"
-          expect(mirror[1].name) == "age"
-          expect(mirror[1].value as? Int) == 24
+        
+        it("has int subcript that returns MirrorItem") {
+          let item = mirror[0]
+          expect(item.name) == "name"
+          expect(item.value as? String ) == "Sara"
+          expect(item.type is String.Type).to(beTrue())
         }
+        
       }
     }
   }

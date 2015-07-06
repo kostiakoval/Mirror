@@ -21,7 +21,6 @@ public struct MirrorItem {
 }
 
 public struct Mirror<T> {
-//  public typealias MirrorItem = (key: String, data: MirrorType)
 
   private let mirror: MirrorType
   private let instance: T
