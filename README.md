@@ -5,11 +5,12 @@
 [![License](https://img.shields.io/cocoapods/l/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![Platform](https://img.shields.io/cocoapods/p/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 
-Swift objects Reflection
+100% Swift objects Reflection API
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first.  
+Create a mirror for an instance   
 
 ```swift
 struct Person {
@@ -20,6 +21,8 @@ struct Person {
 var person = Person(name: "Jon", age: 27)
 let mirror = Mirror(person)
 ```
+
+Inspect it  
 
 ```swift
 mirror.names  

@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     mirror.values
     
     let tt = mirror[4]
-    tt.key
-    let val = tt.data.value as! (x: Int, y: Int)
+    tt.name
+    let val = tt.value as! (x: Int, y: Int)
     val.x
     
     let namedTup :(x: Int, y: Int)?
@@ -62,11 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     println(namedTup)
     
     let child = mirror.children
-    for (k, v) in mirror {
-      k
-      v
+    for item in mirror {
+      println(item)
     }
-
   }
 
   
