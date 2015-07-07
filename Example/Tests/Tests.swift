@@ -80,7 +80,7 @@ class MirrorSpec: QuickSpec {
         }
         
         it("has count") {
-          expect(count(mirror)) == 2
+          expect(mirror.count) == 2
         }
         
         it("has int subcript that returns MirrorItem") {

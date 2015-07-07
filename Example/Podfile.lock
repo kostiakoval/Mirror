@@ -1,20 +1,28 @@
 PODS:
   - Mirror (0.1.0)
-  - Nimble (1.0.0)
-  - Quick (0.3.1)
+  - Nimble (2.0.0-rc.1)
+  - Quick (0.4.0)
 
 DEPENDENCIES:
   - Mirror (from `../`)
-  - Nimble
-  - Quick (~> 0.3.1)
+  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `swift-2.0`)
+  - Quick (~> 0.4.0)
 
 EXTERNAL SOURCES:
   Mirror:
     :path: "../"
+  Nimble:
+    :branch: swift-2.0
+    :git: https://github.com/Quick/Nimble.git
+
+CHECKOUT OPTIONS:
+  Nimble:
+    :commit: 6f356f2db6de77883cab0e86a1fa5ebb20b6679f
+    :git: https://github.com/Quick/Nimble.git
 
 SPEC CHECKSUMS:
-  Mirror: c585cfd098d761457ea231458a94554b9accc53a
-  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
-  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Mirror: fa8e75bf7618c91df454dd8cc4893616ee420c36
+  Nimble: 7ab11d79c4f70cb6b5a4a01685ae90243345c8ee
+  Quick: 2286bfff349102670c6d2dafd0d2cefab42f5f0b
 
 COCOAPODS: 0.37.2

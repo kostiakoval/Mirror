@@ -31,7 +31,7 @@ mirror["age"]
 mirror.toDictionary
 
 for item in mirror {
-  println(item)
+  print(item)
 }
 
 var mirP = mirror[2]

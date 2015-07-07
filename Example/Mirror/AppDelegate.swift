@@ -35,19 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func inspectPerson() {
-    var person = Person(name: "Jon", age: 27)
+    let person = Person(name: "Jon", age: 27)
     let mirror = Mirror(person)
 
-    println(mirror.names)
-    println(mirror.values)
-    println(mirror["name"])
+    print(mirror.names)
+    print(mirror.values)
+    print(mirror["name"])
   }
   
   func inspectElse() {
     let a = A(name: "", val: 10, maybe: nil, tup: (1, 2),  tupNam: (x: 1, y: 2))
     let mirror = Mirror(a)
     
-    count(mirror)
+    mirror.count
     
     mirror.names
     mirror.values
@@ -59,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let namedTup :(x: Int, y: Int)?
     namedTup = mirror.get("maybe")
-    println(namedTup)
+    print(namedTup)
     
-    let child = mirror.children
+    //let child = mirror.children
     for item in mirror {
-      println(item)
+      print(item)
     }
   }
 

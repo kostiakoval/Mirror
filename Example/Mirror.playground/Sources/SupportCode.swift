@@ -44,7 +44,7 @@ public struct MirrorItem {
   }
 }
 
-extension MirrorItem : Printable {
+extension MirrorItem : CustomStringConvertible {
   public var description: String {
     return "\(name): \(type) = \(value)"
   }
@@ -62,15 +62,15 @@ public struct Mirror<T> {
   
   //MARK: -
   public var names: [String] {
-    return map(self) { $0.name }
+    return map { $0.name }
   }
   
   public var values: [Any] {
-    return map(self) { $0.value }
+    return map { $0.value }
   }
   
   public var children: [MirrorItem] {
-    return map(self) { $0 }
+    return map { $0 }
   }
   
   //MARK: -
