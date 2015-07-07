@@ -57,9 +57,7 @@ public struct Mirror<T> {
   
   /// short style for type names
   public var typesShortName: [String] {
-    return map(self) {
-      split("\($0.type)") { $0 == "." }.last!
-    }
+    return map(self) { "\($0.type)".pathExtension }
   }
 
 
