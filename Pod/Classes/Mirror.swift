@@ -39,14 +39,31 @@ public struct Mirror<T> {
   }
   
 //MARK: -
+
+  /// Properties Names
   public var names: [String] {
     return map(self) { $0.name }
   }
-  
+
+  /// Properties Values
   public var values: [Any] {
     return map(self) { $0.value }
   }
+
+  /// Properties Types
+  public var types: [Any.Type] {
+    return map(self) { $0.type }
+  }
   
+  /// short style for type names
+  public var typesShortName: [String] {
+    return map(self) {
+      split("\($0.type)") { $0 == "." }.last!
+    }
+  }
+
+
+  /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
@@ -56,7 +73,7 @@ public struct Mirror<T> {
     let res = findFirst(self) { $0.name == key }
     return res.map { $0.value }
   }
-  
+
   public func get<U>(key: String) -> U? {
     let res = findFirst(self) { $0.name == key }
     return res.flatMap { $0.value as? U }

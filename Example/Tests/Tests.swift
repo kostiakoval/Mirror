@@ -7,6 +7,10 @@ import Mirror
 struct Person {
   let name: String
   var age: Int
+  
+  func printMe() {
+    println("Me")
+  }
 }
 
 class MirrorSpec: QuickSpec {
@@ -26,6 +30,18 @@ class MirrorSpec: QuickSpec {
         expect(mirror.values[0] as? String) == "Sara"
         expect(mirror.values[1] as? Int) == 24
       }
+      
+      it("can get types") {
+        let types = mirror.types
+        let stringTypes = types.map { "\($0)" }
+        expect(stringTypes) == ["Swift.String", "Swift.Int"]
+      }
+      
+      it("can get types names with short style") {
+        let typesName = mirror.typesShortName
+        expect(typesName) == ["String", "Int"]
+      }
+      
       
       it("can get children mirrors") {
         let children = mirror.children
