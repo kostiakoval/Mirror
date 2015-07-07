@@ -16,9 +16,10 @@ m.count
 struct Person {
   let name: String
   var age: Int
+  var p: P
 }
 
-var person = Person(name: "Jon", age: 27)
+var person = Person(name: "Jon", age: 27, p: P(a: 0, b: ""))
 let mirror = Mirror(person)
 
 mirror.names
@@ -29,4 +30,14 @@ mirror["age"]
 
 mirror.toDictionary
 
+for item in mirror {
+  println(item)
+}
 
+var mirP = mirror[2]
+mirP.name
+mirP.value
+mirP.type
+//
+
+dump(person, name: "Person", indent: 0, maxDepth: 10, maxItems: 40)

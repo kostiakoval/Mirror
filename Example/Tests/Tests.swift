@@ -27,6 +27,17 @@ class MirrorSpec: QuickSpec {
         expect(mirror.values[1] as? Int) == 24
       }
       
+      it("can get children mirrors") {
+        let children = mirror.children
+        expect(children.count) == 2
+
+        expect(children[0].name) == "name"
+        expect(children[0].value as? String ) == "Sara"
+        expect(children[0].type is String.Type).to(beTrue())
+
+        expect(children[1].name) == "age"
+      }
+      
       it("has a subscript for getting values by name") {
         expect(mirror["name"] as? String) == "Sara"
         expect(mirror["age"] as? Int) == 24

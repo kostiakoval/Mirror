@@ -20,6 +20,14 @@ public struct MirrorItem {
   }
 }
 
+extension MirrorItem : Printable {
+  public var description: String {
+    return "\(name): \(type) = \(value)"
+  }
+}
+
+//MARK: -
+
 public struct Mirror<T> {
 
   private let mirror: MirrorType
