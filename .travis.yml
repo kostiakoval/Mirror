@@ -2,6 +2,11 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
+# blacklist
+branches:
+  except:
+    - swift-2.0
+
 language: objective-c
 osx_image: xcode6.4
 cache: cocoapods
