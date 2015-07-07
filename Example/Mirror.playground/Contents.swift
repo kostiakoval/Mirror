@@ -16,28 +16,45 @@ m.count
 struct Person {
   let name: String
   var age: Int
-  var p: P
 }
 
-var person = Person(name: "Jon", age: 27, p: P(a: 0, b: ""))
+var person = Person(name: "Jon", age: 27)
 let mirror = Mirror(person)
 
 mirror.names
-mirror.values
+//["name", "age"]
 
-mirror["name"]
-mirror["age"]
+mirror.values
+//["Jon", 27]
+
+mirror.types
+//[Swift.String, Swift.Int]
+
+mirror.typesShortName
+//["String", "Int"]
+
+mirror["name"] //"Jon"
+mirror["age"]  //27
 
 mirror.toDictionary
+//["age": 27, "name": "Jon"]
 
+// Iterate over it's children MirrorItems
 for item in mirror {
   println(item)
 }
+//name: Swift.String = Jon
+//age: Swift.Int = 27
 
-var mirP = mirror[2]
+let children = mirror.children //Array of MirrorItem
+let firstKid = children[0]
+//{name: "name", type: Swift.String, value: "Jon" }
+
+
+
+["age": 27, "name": "Jon"]
+var mirP = mirror[1]
 mirP.name
 mirP.value
 mirP.type
 //
-
-dump(person, name: "Person", indent: 0, maxDepth: 10, maxItems: 40)

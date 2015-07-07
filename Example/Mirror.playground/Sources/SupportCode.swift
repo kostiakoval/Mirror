@@ -22,16 +22,6 @@ func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element) -> Bool
   return nil
 }
 
-//
-//  File.swift
-//  Mirror
-//
-//  Created by Kostiantyn Koval on 05/07/15.
-//
-//
-
-import Foundation
-
 public struct MirrorItem {
   public let name: String
   public let type: Any.Type
@@ -50,6 +40,8 @@ extension MirrorItem : Printable {
   }
 }
 
+//MARK: -
+
 public struct Mirror<T> {
   
   private let mirror: MirrorType
@@ -61,14 +53,29 @@ public struct Mirror<T> {
   }
   
   //MARK: -
+  
+  /// Properties Names
   public var names: [String] {
     return map(self) { $0.name }
   }
   
+  /// Properties Values
   public var values: [Any] {
     return map(self) { $0.value }
   }
   
+  /// Properties Types
+  public var types: [Any.Type] {
+    return map(self) { $0.type }
+  }
+  
+  /// short style for type names
+  public var typesShortName: [String] {
+    return map(self) { "\($0.type)".pathExtension }
+  }
+  
+  
+  /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
