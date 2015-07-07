@@ -7,6 +7,9 @@ var str = "Hello, playground"
 struct P {
   let a: Int
   let b: String
+  struct AA {
+    let a = 0
+  }
 }
 
 let m = reflect(P(a: 0, b: ""))
@@ -41,3 +44,7 @@ mirP.type
 //
 
 dump(person, name: "Person", indent: 0, maxDepth: 10, maxItems: 40)
+
+
+let p = "\(P.AA.self)".pathExtension
+p
