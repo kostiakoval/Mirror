@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Mirror"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "Mirror - the most simle runtime reflection API in Swift."
   s.description      = <<-DESC
                         Mirror provides a nice API for working with MirrorType
