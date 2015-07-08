@@ -42,7 +42,6 @@ class MirrorSpec: QuickSpec {
         expect(typesName) == ["String", "Int"]
       }
       
-      
       it("can get children mirrors") {
         let children = mirror.children
         expect(children.count) == 2
@@ -82,7 +81,7 @@ class MirrorSpec: QuickSpec {
         expect(dic["age"] as? Int) == 24
       }
       
-      context("The Collectio type") {
+      context("The Collection type") {
        
         it("has a generator") {
           var generator = mirror.generate()

@@ -38,7 +38,7 @@ public struct Mirror<T> {
     mirror = reflect(x)
   }
   
-//MARK: -
+//MARK: - Inpection
 
   /// Properties Names
   public var names: [String] {
@@ -55,29 +55,31 @@ public struct Mirror<T> {
     return map(self) { $0.type }
   }
   
-  /// short style for type names
+  /// Short style for type names
   public var typesShortName: [String] {
     return map(self) { "\($0.type)".pathExtension }
   }
-
 
   /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
   
-//MARK: -
+//MARK: - 
+  /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
     let res = findFirst(self) { $0.name == key }
     return res.map { $0.value }
   }
 
+  /// Returns a property value for a property name with a Genereci type
+  /// No casting needed
   public func get<U>(key: String) -> U? {
     let res = findFirst(self) { $0.name == key }
     return res.flatMap { $0.value as? U }
   }
   
-//MARK: -
+  /// convert a type to a dicitonary with [PropertyName : PropertyValue] notation
   public var toDictionary: [String : Any] {
     
     var result: [String : Any] = [ : ]
@@ -116,19 +118,4 @@ extension Mirror : CollectionType, SequenceType {
   public subscript (i: Int) -> MirrorItem {
     return MirrorItem(mirror[i])
   }
-}
-
-infix operator --> {}
-
-func --> <T>(instance: T, key: String) -> Any? {
-  let mirror = reflect(instance)
-  
-  for index in 0 ..< mirror.count {
-    let (childKey, childMirror) = mirror[index]
-    if childKey == key {
-      return childMirror.value
-    }
-  }
-  
-  return nil
 }
