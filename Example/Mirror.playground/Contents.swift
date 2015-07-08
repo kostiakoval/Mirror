@@ -50,11 +50,7 @@ let children = mirror.children //Array of MirrorItem
 let firstKid = children[0]
 //{name: "name", type: Swift.String, value: "Jon" }
 
-
-
-["age": 27, "name": "Jon"]
 var mirP = mirror[1]
-mirP.name
-mirP.value
-mirP.type
-//
+mirP.name   // "age"
+mirP.value  // 27
+mirP.type   // Swift.Int
