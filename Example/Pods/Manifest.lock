@@ -1,0 +1,20 @@
+PODS:
+  - Mirror (0.2.0)
+  - Nimble (1.0.0)
+  - Quick (0.3.1)
+
+DEPENDENCIES:
+  - Mirror (from `../`)
+  - Nimble
+  - Quick (~> 0.3.1)
+
+EXTERNAL SOURCES:
+  Mirror:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mirror: 67d9f661be676872ad589fc96e17748c398c0027
+  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
+  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+
+COCOAPODS: 0.37.2
