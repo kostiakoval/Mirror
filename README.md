@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![Platform](https://img.shields.io/cocoapods/p/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 
-Mirror is Swift objects Reflection API. It's 100% Swift, no Objc runtime.  
+**Mirror** - Swift objects Reflection API. It's 100% Swift, no Objc runtime.  
 It's possible to do reflection of Swift object. And it doesn’t need to be hard.
 
 ##Features
@@ -36,37 +36,28 @@ let mirror = Mirror(person)
 
 ### Inspect it  
 
-Type properties names  
 ```swift
+// Its properties names  
 mirror.names  
 //["name", "age"]
-```
 
-Type properties values  
-```swift
+// Its properties values  
 mirror.values
 //["Jon", 27]
-```
 
-Type properties types  
-```swift
+//Its properties types  
 mirror.types
 //[Swift.String, Swift.Int]
-```
 
 Type properties types short notation, skip bundle  
-```swift
 mirror.typesShortName
 //["String", "Int"]
-```
 
-Get property values by name  
-```swift 
+//Get property values by name  
 mirror["name"] // "Jon"
 mirror["age"]  // 27
-```
-Convert to dictionary with [PropertyName : PropertyValues]  
-```swift 
+
+//Convert to dictionary with [PropertyName : PropertyValues]  
 mirror.toDictionary
 //["age": 27, "name": "Jon"]
 ```
