@@ -49,7 +49,7 @@ mirror.values
 mirror.types
 //[Swift.String, Swift.Int]
 
-Type properties types short notation, skip bundle  
+//Type properties types short notation, skip bundle  
 mirror.typesShortName
 //["String", "Int"]
 
