@@ -1,6 +1,0 @@
-framework module Mirror {
-  umbrella header "Pods-Mirror_Tests-Mirror-umbrella.h"
-
-  export *
-  module * { export * }
-}
