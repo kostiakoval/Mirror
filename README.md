@@ -2,14 +2,25 @@
 
 [![CI Status](http://img.shields.io/travis/kostiakoval/Mirror.svg?style=flat)](https://travis-ci.org/kostiakoval/Mirror)
 [![Version](https://img.shields.io/cocoapods/v/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 [![Platform](https://img.shields.io/cocoapods/p/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
 
-Swift objects Reflection API - 100%, no Objc runtime
+Mirror is Swift objects Reflection API. It's 100% Swift, no Objc runtime.  
+It's possible to do reflection of Swift object. And it doesn’t need to be hard.
+
+##Features
+- [x] 100% Pure Swift implementation
+- [x] Easy to use
+- [x] Powerful
+- [ ] Even more Powerful (Coming soon)
 
 ## Usage
+If you want to try it, there is a demo Playground available, just run 
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.  
+```
+pod try Mirror
+```
 
 ###Create a mirror for an instance   
 
@@ -78,16 +89,22 @@ let firstKid = children[0]
 //{name: "name", type: Swift.String, value: "Jon" }
 ```
 
-## Requirements
-- Swift 1.2
-
 ## Installation
+###[CocoaPods](http://cocoapods.org)
 
-Mirror is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+To install it, simply add the following line to your Podfile:
 
 ```ruby
+use_frameworks!
 pod "Mirror"
+```
+
+###[Carthage](https://github.com/Carthage/Carthage)
+
+To integrate Mirror into your Xcode project using Carthage, specify it in your Cartfile:
+
+```
+github "kostiakoval/Mirror"
 ```
 
 ## Author
