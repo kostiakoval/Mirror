@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Play.playground">
-   </FileRef>
-   <FileRef
       location = "group:Mirror.playground">
    </FileRef>
    <FileRef
