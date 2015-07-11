@@ -37,6 +37,17 @@ public struct Mirror<T> {
     instance = x
     mirror = reflect(x)
   }
+
+//MARK: - Type Info
+  /// Instance type full name, include Module
+  public var name: String {
+    return "\(instance.dynamicType)"
+  }
+
+  /// Instance type short name, just a type name, without Module
+  public var shortName: String {
+    return "\(instance.dynamicType)".pathExtension
+  }
   
 //MARK: - Inpection
 

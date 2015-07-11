@@ -26,6 +26,18 @@ class MirrorSpec: QuickSpec {
       let person = Person(name: "Sara", age: 24)
       let mirror = Mirror(person)
       
+//MARK: - Type Info
+      
+      it("can get its type name") {
+        expect(mirror.name) == "MirrorTests.Person"
+      }
+      
+      it("can get its type short name") {
+        expect(mirror.shortName) == "Person"
+      }
+      
+//MARK: - Children info
+      
       it("can get names") {
         let mirror = Mirror(person)
         expect(mirror.names) == ["name", "age"]
