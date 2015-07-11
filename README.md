@@ -118,6 +118,17 @@ To integrate Mirror into your Xcode project using Carthage, specify it in your C
 github "kostiakoval/Mirror"
 ```
 
+## Contribute
+
+Please open an issue with bugs and missing features, functionality or ideas for improvements.  
+Also you can contribute by following this guidelines:
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create pull request
+
 ## Author
 
 Kostiantyn Koval, konstantin.koval1@gmail.com
