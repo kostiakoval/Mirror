@@ -13,10 +13,6 @@ import Mirror
 struct Person {
   let name: String
   var age: Int
-  
-  func printMe() {
-    print("Me", appendNewline: false)
-  }
 }
 
 class MirrorSpec: QuickSpec {
