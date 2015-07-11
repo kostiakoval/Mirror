@@ -22,6 +22,8 @@ func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element) -> Bool
   return nil
 }
 
+import Foundation
+
 public struct MirrorItem {
   public let name: String
   public let type: Any.Type
@@ -52,7 +54,28 @@ public struct Mirror<T> {
     mirror = reflect(x)
   }
   
-  //MARK: -
+  //MARK: - Type Info
+  
+  /// Instance type full name, include Module
+  public var name: String {
+    return "\(instance.dynamicType)"
+  }
+  
+  /// Instance type short name, just a type name, without Module
+  public var shortName: String {
+    return "\(instance.dynamicType)".pathExtension
+  }
+  
+  /// Type properties count
+  public var childrenCount: Int {
+    return mirror.count
+  }
+  
+  public var memorySize: Int {
+    return sizeofValue(instance)
+  }
+  
+  //MARK: - Children Inpection
   
   /// Properties Names
   public var names: [String] {
@@ -69,29 +92,32 @@ public struct Mirror<T> {
     return map(self) { $0.type }
   }
   
-  /// short style for type names
+  /// Short style for type names
   public var typesShortName: [String] {
     return map(self) { "\($0.type)".pathExtension }
   }
-  
   
   /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
   
-  //MARK: -
+  //MARK: - Quering
+  
+  /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
     let res = findFirst(self) { $0.name == key }
     return res.map { $0.value }
   }
   
+  /// Returns a property value for a property name with a Genereci type
+  /// No casting needed
   public func get<U>(key: String) -> U? {
     let res = findFirst(self) { $0.name == key }
     return res.flatMap { $0.value as? U }
   }
   
-  //MARK: -
+  /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
   public var toDictionary: [String : Any] {
     
     var result: [String : Any] = [ : ]
@@ -102,6 +128,8 @@ public struct Mirror<T> {
     return result
   }
   
+  /// Convert to NSDictionary.
+  /// Useful for saving it to Plist
   public var toNSDictionary: NSDictionary {
     
     var result: [String : AnyObject] = [ : ]
@@ -130,19 +158,4 @@ extension Mirror : CollectionType, SequenceType {
   public subscript (i: Int) -> MirrorItem {
     return MirrorItem(mirror[i])
   }
-}
-
-infix operator --> {}
-
-func --> <T>(instance: T, key: String) -> Any? {
-  let mirror = reflect(instance)
-  
-  for index in 0 ..< mirror.count {
-    let (childKey, childMirror) = mirror[index]
-    if childKey == key {
-      return childMirror.value
-    }
-  }
-  
-  return nil
 }

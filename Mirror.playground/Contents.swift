@@ -1,18 +1,5 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
-
-var str = "Hello, playground"
-
-struct P {
-  let a: Int
-  let b: String
-}
-
-let m = reflect(P(a: 0, b: ""))
-m.count
-
-
 struct Person {
   let name: String
   var age: Int
@@ -20,6 +7,21 @@ struct Person {
 
 var person = Person(name: "Jon", age: 27)
 let mirror = Mirror(person)
+
+//: ## Type inspection
+//: Get information about the type of an instance
+
+mirror.name
+//"__lldb_expr_69.Person"
+
+mirror.shortName
+//Person
+
+mirror.memorySize
+// 32
+
+//: ## Type Properties Inpection
+//: Get information about content of the type, its properties
 
 mirror.names
 //["name", "age"]
@@ -38,6 +40,10 @@ mirror["age"]  //27
 
 mirror.toDictionary
 //["age": 27, "name": "Jon"]
+
+//: ## Mirror is a CollectionType
+//: All the CollectionType  methods are available for use with mirror  
+//: Iterating, count, map, filter and other
 
 // Iterate over it's children MirrorItems
 for item in mirror {
@@ -73,3 +79,4 @@ let rf = reflect(cat)
 rf.count
 rf.disposition
 rf.value
+
