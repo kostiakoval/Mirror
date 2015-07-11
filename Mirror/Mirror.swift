@@ -39,6 +39,7 @@ public struct Mirror<T> {
   }
 
 //MARK: - Type Info
+  
   /// Instance type full name, include Module
   public var name: String {
     return "\(instance.dynamicType)"
@@ -48,8 +49,17 @@ public struct Mirror<T> {
   public var shortName: String {
     return "\(instance.dynamicType)".pathExtension
   }
+
+  /// Type properties count
+  public var childrenCount: Int {
+    return mirror.count
+  }
   
-//MARK: - Inpection
+  public var memorySize: Int {
+    return sizeofValue(instance)
+  }
+  
+//MARK: - Children Inpection
 
   /// Properties Names
   public var names: [String] {
@@ -76,7 +86,8 @@ public struct Mirror<T> {
     return map(self) { $0 }
   }
   
-//MARK: - 
+//MARK: - Quering
+  
   /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
     let res = findFirst(self) { $0.name == key }
@@ -90,7 +101,7 @@ public struct Mirror<T> {
     return res.flatMap { $0.value as? U }
   }
   
-  /// convert a type to a dicitonary with [PropertyName : PropertyValue] notation
+  /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
   public var toDictionary: [String : Any] {
     
     var result: [String : Any] = [ : ]
@@ -101,6 +112,8 @@ public struct Mirror<T> {
     return result
   }
   
+  /// Convert to NSDictionary. 
+  /// Useful for saving it to Plist
   public var toNSDictionary: NSDictionary {
     
     var result: [String : AnyObject] = [ : ]

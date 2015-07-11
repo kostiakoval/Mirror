@@ -36,6 +36,14 @@ class MirrorSpec: QuickSpec {
         expect(mirror.shortName) == "Person"
       }
       
+      it("can get its properties count") {
+        expect(mirror.childrenCount) == 2
+      }
+      
+      it("can get momory size for the type") {
+        expect(mirror.memorySize) == 32 // sizeof(String) + sizeof(Int)
+      }
+      
 //MARK: - Children info
       
       it("can get names") {
