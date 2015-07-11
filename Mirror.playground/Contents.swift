@@ -20,6 +20,12 @@ mirror.shortName
 mirror.memorySize
 // 32
 
+mirror.isClass
+//false
+
+mirror.isStruct
+//ture
+
 //: ## Type Properties Inpection
 //: Get information about content of the type, its properties
 
