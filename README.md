@@ -53,10 +53,12 @@ mirror.isClass
 
 mirror.isStruct
 //true
+```
 
-//: ## Type Properties Inspection
-//: Get information about content of the type, its properties
+### Type Properties Inspection  
+Get information about content of the type, its properties
 
+```swift
 mirror.names
 //["name", "age"]
 
@@ -75,7 +77,8 @@ mirror["age"]  //27
 mirror.toDictionary
 //["age": 27, "name": "Jon"]
 ```
-**Mirror is a CollectionType**  
+
+### Mirror is a CollectionType  
 All the CollectionType methods are available for use with mirror  
 Iterating, count, map, filter and other  
 
