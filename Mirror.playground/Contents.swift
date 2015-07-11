@@ -24,7 +24,7 @@ mirror.isClass
 //false
 
 mirror.isStruct
-//ture
+//true
 
 //: ## Type Properties Inpection
 //: Get information about content of the type, its properties
@@ -66,23 +66,3 @@ var mirP = mirror[1]
 mirP.name   // "age"
 mirP.value  // 27
 mirP.type   // Swift.Int
-
-
-/// Enum
-
-enum Animals: String {
-  case Cat = "C"
-  case Dog = "D"
-}
-
-let cat = Animals.Cat
-
-let mm = Mirror(cat)
-mm.names
-mm.values
-
-let rf = reflect(cat)
-rf.count
-rf.disposition
-rf.value
-

@@ -37,47 +37,64 @@ let mirror = Mirror(person)
 ### Inspect it  
 
 ```swift
-// Its properties names  
-mirror.names  
+//Get information about the type of an instance
+
+mirror.name
+//"MirrorTest.Person"
+
+mirror.shortName
+//Person
+
+mirror.memorySize
+// 32
+
+mirror.isClass
+//false
+
+mirror.isStruct
+//true
+
+//: ## Type Properties Inspection
+//: Get information about content of the type, its properties
+
+mirror.names
 //["name", "age"]
 
-// Its properties values  
 mirror.values
 //["Jon", 27]
 
-//Its properties types  
 mirror.types
 //[Swift.String, Swift.Int]
 
-//Type properties types short notation, skip bundle  
 mirror.typesShortName
 //["String", "Int"]
 
-//Get property values by name  
-mirror["name"] // "Jon"
-mirror["age"]  // 27
+mirror["name"] //"Jon"
+mirror["age"]  //27
 
-//Convert to dictionary with [PropertyName : PropertyValues]  
 mirror.toDictionary
 //["age": 27, "name": "Jon"]
 ```
+**Mirror is a CollectionType**  
+All the CollectionType methods are available for use with mirror  
+Iterating, count, map, filter and other  
 
-**Mirror implements CollectionType, SequenceType.**  
-
-Iterate over it's children MirrorItems  
-```Swift
+```swift
+// Iterate over its children MirrorItems
 for item in mirror {
   println(item)
 }
 //name: Swift.String = Jon
 //age: Swift.Int = 27
-```
 
-Get children MirrorItems 
-```swift
 let children = mirror.children //Array of MirrorItem
 let firstKid = children[0]
 //{name: "name", type: Swift.String, value: "Jon" }
+
+var mirP = mirror[1]
+mirP.name   // "age"
+mirP.value  // 27
+mirP.type   // Swift.Int
 ```
 
 ## Installation
