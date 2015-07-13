@@ -1,4 +1,4 @@
-![Mirror](https://raw.githubusercontent.com/kostiakoval/Mirror/master/Image/logo1.png)
+![Mirror](https://raw.githubusercontent.com/kostiakoval/Mirror/master/Image/logo.png)
 
 
 [![CI Status](http://img.shields.io/travis/kostiakoval/Mirror.svg?style=flat)](https://travis-ci.org/kostiakoval/Mirror)
