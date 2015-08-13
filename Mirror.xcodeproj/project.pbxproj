@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5A964D81B7CC2180039130D /* MirrorOptionalsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A964D71B7CC2180039130D /* MirrorOptionalsTest.swift */; };
 		B5F3D7F51B50579100528EF4 /* Mirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B5F3D7F41B50579100528EF4 /* Mirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5F3D7FB1B50579100528EF4 /* Mirror.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F3D7F01B50579100528EF4 /* Mirror.framework */; };
 		B5F3D8021B50579100528EF4 /* MirrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3D8011B50579100528EF4 /* MirrorTests.swift */; };
@@ -56,6 +57,7 @@
 		38655085F436530DA0A592AD /* Pods_Mirror_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mirror_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436B6CAEFB5068A8D66BBFE5 /* Pods_Mirror_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mirror_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2F702DE49FD9A40531D887 /* Pods-MirrorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MirrorTests/Pods-MirrorTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5A964D71B7CC2180039130D /* MirrorOptionalsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MirrorOptionalsTest.swift; sourceTree = "<group>"; };
 		B5F3D7F01B50579100528EF4 /* Mirror.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirror.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F3D7F31B50579100528EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5F3D7F41B50579100528EF4 /* Mirror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mirror.h; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F3D8011B50579100528EF4 /* MirrorTests.swift */,
+				B5A964D71B7CC2180039130D /* MirrorOptionalsTest.swift */,
 				B5F3D7FF1B50579100528EF4 /* Supporting Files */,
 			);
 			path = MirrorTests;
@@ -418,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A964D81B7CC2180039130D /* MirrorOptionalsTest.swift in Sources */,
 				B5F3D8021B50579100528EF4 /* MirrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,6 +677,7 @@
 				B5F3D8361B50FA2A00528EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

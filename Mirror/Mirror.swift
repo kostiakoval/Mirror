@@ -29,7 +29,7 @@ extension MirrorItem : Printable {
 //MARK: -
 
 public struct Mirror<T> {
-
+  
   private let mirror: MirrorType
   let instance: T
   
@@ -37,17 +37,19 @@ public struct Mirror<T> {
     instance = x
     mirror = reflect(x)
   }
-
-//MARK: - Type Info
+  
+  //MARK: - Type Info
   
   /// Instance type full name, include Module
   public var name: String {
     return "\(instance.dynamicType)"
   }
-
+  
   /// Instance type short name, just a type name, without Module
   public var shortName: String {
-    return "\(instance.dynamicType)".pathExtension
+    let name = "\(instance.dynamicType)"
+    let shortName = name.convertOptionals()
+    return shortName.pathExtension
   }
   
   public var isClass: Bool {
@@ -57,7 +59,7 @@ public struct Mirror<T> {
   public var isStruct: Bool {
     return mirror.objectIdentifier == nil
   }
-
+  
   /// Type properties count
   public var childrenCount: Int {
     return mirror.count
@@ -67,18 +69,18 @@ public struct Mirror<T> {
     return sizeofValue(instance)
   }
   
-//MARK: - Children Inpection
-
+  //MARK: - Children Inpection
+  
   /// Properties Names
   public var names: [String] {
     return map(self) { $0.name }
   }
-
+  
   /// Properties Values
   public var values: [Any] {
     return map(self) { $0.value }
   }
-
+  
   /// Properties Types
   public var types: [Any.Type] {
     return map(self) { $0.type }
@@ -86,22 +88,22 @@ public struct Mirror<T> {
   
   /// Short style for type names
   public var typesShortName: [String] {
-    return map(self) { "\($0.type)".pathExtension }
+    return map(self) { "\($0.type)".convertOptionals().pathExtension }
   }
-
+  
   /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
   
-//MARK: - Quering
+  //MARK: - Quering
   
   /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
     let res = findFirst(self) { $0.name == key }
     return res.map { $0.value }
   }
-
+  
   /// Returns a property value for a property name with a Genereci type
   /// No casting needed
   public func get<U>(key: String) -> U? {
@@ -120,7 +122,7 @@ public struct Mirror<T> {
     return result
   }
   
-  /// Convert to NSDictionary. 
+  /// Convert to NSDictionary.
   /// Useful for saving it to Plist
   public var toNSDictionary: NSDictionary {
     
@@ -149,5 +151,20 @@ extension Mirror : CollectionType, SequenceType {
   
   public subscript (i: Int) -> MirrorItem {
     return MirrorItem(mirror[i])
+  }
+}
+
+
+extension String {
+  
+  func convertOptionals() -> String {
+    var x = self
+    while let range = x.rangeOfString("Optional<") {
+      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
+        x.replaceRange(endOfOptional, with: "?")
+      }
+      x.removeRange(range)
+    }
+    return x
   }
 }
