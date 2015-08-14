@@ -48,8 +48,8 @@ public struct Mirror<T> {
   /// Instance type short name, just a type name, without Module
   public var shortName: String {
     let name = "\(instance.dynamicType)"
-    let shortName = name.convertOptionals()
-    return shortName.pathExtension
+    let shortName = name.sortNameStyle
+    return name.sortNameStyle
   }
   
   public var isClass: Bool {
@@ -88,7 +88,10 @@ public struct Mirror<T> {
   
   /// Short style for type names
   public var typesShortName: [String] {
-    return map(self) { "\($0.type)".convertOptionals().pathExtension }
+    return map(self) {
+      let conv = "\($0.type)".sortNameStyle
+      return conv //.pathExtension
+    }
   }
   
   /// Mirror types for every children property
@@ -167,4 +170,31 @@ extension String {
     }
     return x
   }
+  
+  func convertArray() -> String {
+    var x = self
+    while let range = x.rangeOfString("Array<") {
+      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
+        x.replaceRange(endOfOptional, with: "]")
+      }
+      x.replaceRange(range, with:"[")
+    }
+    return x
+  }
+  
+  func removeTypeModuleName() -> String {
+    var x = self
+    if let range = self.rangeOfString(".") {
+      x = self.substringFromIndex(range.endIndex)
+    }
+    return x
+  }
+  
+  var sortNameStyle: String {
+    return self
+      .removeTypeModuleName()
+      .convertOptionals()
+      .convertArray()
+  }
+  
 }

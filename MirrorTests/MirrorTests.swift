@@ -19,6 +19,11 @@ struct Person {
   }
 }
 
+struct Records {
+  let name: [String]
+  let maybeIds: [Int?]
+}
+
 class MirrorSpec: QuickSpec {
   override func spec() {
     
@@ -146,6 +151,31 @@ class MirrorSpec: QuickSpec {
           expect(item.type is String.Type).to(beTrue())
         }
       }
+    }
+    
+    describe("Mirror and Arrays") {
+      
+      let records = Records(name: ["One", "Two"], maybeIds: [1, nil])
+      let mirror = Mirror(records)
+      
+      it("can get types") {
+        struct Records {
+          let name: [String]
+          let maybeIds: [Int?]
+        }
+
+        let types = mirror.types
+        let stringTypes = types.map { "\($0)" }
+        expect(stringTypes) == ["Swift.Array<Swift.String>", "Swift.Array<Swift.Optional<Swift.Int>>"]
+      }
+      
+      it("can get types names with short style") {
+        let typesName = mirror.typesShortName
+        expect(typesName) == ["[String]", "[Int?]"]
+      }
+      
+
+
     }
   }
 }
