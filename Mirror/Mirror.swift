@@ -48,10 +48,13 @@ public struct Mirror<T> {
   /// Instance type short name, just a type name, without Module
   public var shortName: String {
     let name = "\(instance.dynamicType)"
-    let shortName = name.sortNameStyle
     return name.sortNameStyle
   }
   
+}
+
+extension Mirror {
+
   public var isClass: Bool {
     return mirror.objectIdentifier != nil
   }
@@ -60,6 +63,25 @@ public struct Mirror<T> {
     return mirror.objectIdentifier == nil
   }
   
+  public var isOptional: Bool {
+    return name.hasPrefix("Swift.Optional<")
+  }
+  
+  public var isArray: Bool {
+    return name.hasPrefix("Swift.Array<")
+  }
+
+  public var isDictionary: Bool {
+    return name.hasPrefix("Swift.Dictionary<")
+  }
+
+  public var isSet: Bool {
+    return name.hasPrefix("Swift.Set<")
+  }
+}
+
+extension Mirror {
+
   /// Type properties count
   public var childrenCount: Int {
     return mirror.count
@@ -160,6 +182,10 @@ extension Mirror : CollectionType, SequenceType {
 
 extension String {
   
+  func contains(x: String) -> Bool {
+    return self.rangeOfString(x) != nil
+  }
+  
   func convertOptionals() -> String {
     var x = self
     while let range = x.rangeOfString("Optional<") {
@@ -173,11 +199,16 @@ extension String {
   
   func convertArray() -> String {
     var x = self
-    while let range = x.rangeOfString("Array<") {
-      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
-        x.replaceRange(endOfOptional, with: "]")
+    while let start = x.rangeOfString("Array<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let arrayType = x[subtypeRange]
+        print(arrayType)
+        x.replaceRange(end, with: "]")
+        x.replaceRange(subtypeRange, with: arrayType.sortNameStyle)
+
       }
-      x.replaceRange(range, with:"[")
+      x.replaceRange(start, with:"[")
     }
     return x
   }
