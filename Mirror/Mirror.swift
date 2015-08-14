@@ -198,11 +198,14 @@ extension String {
   
   func convertOptionals() -> String {
     var x = self
-    while let range = x.rangeOfString("Optional<") {
-      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
-        x.replaceRange(endOfOptional, with: "?")
+    while let start = x.rangeOfString("Optional<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let subType = x[subtypeRange]
+        x.replaceRange(end, with: "?")
+        x.replaceRange(subtypeRange, with: subType.sortNameStyle)
       }
-      x.removeRange(range)
+      x.removeRange(start)
     }
     return x
   }
@@ -213,7 +216,6 @@ extension String {
       if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
         let subtypeRange = start.endIndex..<end.startIndex
         let arrayType = x[subtypeRange]
-        print(arrayType)
         x.replaceRange(end, with: "]")
         x.replaceRange(subtypeRange, with: arrayType.sortNameStyle)
 

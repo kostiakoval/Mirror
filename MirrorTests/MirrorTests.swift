@@ -193,6 +193,19 @@ class MirrorSpec: QuickSpec {
         let mirror = Mirror(ar)
         expect(mirror.shortName) == "[Int]"
       }
+      
+      it("handle Optionals name") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.name) == "Swift.Optional<Swift.Int>"
+      }
+
+      it("handle Optionals shortName") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.shortName) == "Int?"
+      }
+
     }
     
     describe("Mirror and Arrays") {
