@@ -52,6 +52,10 @@ public struct Mirror<T> {
     return shortName.pathExtension
   }
   
+}
+
+extension Mirror {
+
   public var isClass: Bool {
     return mirror.objectIdentifier != nil
   }
@@ -60,6 +64,25 @@ public struct Mirror<T> {
     return mirror.objectIdentifier == nil
   }
   
+  public var isOptional: Bool {
+    return name.hasPrefix("Swift.Optional<")
+  }
+  
+  public var isArray: Bool {
+    return name.hasPrefix("Swift.Array<")
+  }
+
+  public var isDictionary: Bool {
+    return name.hasPrefix("Swift.Dictionary<")
+  }
+
+  public var isSet: Bool {
+    return name.hasPrefix("Swift.Set<")
+  }
+}
+
+extension Mirror {
+
   /// Type properties count
   public var childrenCount: Int {
     return mirror.count
@@ -156,6 +179,10 @@ extension Mirror : CollectionType, SequenceType {
 
 
 extension String {
+  
+  func contains(x: String) -> Bool {
+    return self.rangeOfString(x) != nil
+  }
   
   func convertOptionals() -> String {
     var x = self
