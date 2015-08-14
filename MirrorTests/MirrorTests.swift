@@ -19,6 +19,11 @@ struct Person {
   }
 }
 
+struct Records {
+  let name: [String]
+  let maybeIds: [Int?]
+}
+
 class MirrorSpec: QuickSpec {
   override func spec() {
     
@@ -176,5 +181,55 @@ class MirrorSpec: QuickSpec {
       }
     }
     
+    describe("Subtypes") {
+      it("Arrays name") {
+        let ar = [1, 2, 3]
+        let mirror = Mirror(ar)
+        expect(mirror.name) == "Swift.Array<Swift.Int>"
+      }
+      
+      it("Array shortName") {
+        let ar = [1, 2, 3]
+        let mirror = Mirror(ar)
+        expect(mirror.shortName) == "[Int]"
+      }
+      
+      it("handle Optionals name") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.name) == "Swift.Optional<Swift.Int>"
+      }
+
+      it("handle Optionals shortName") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.shortName) == "Int?"
+      }
+
+    }
+    
+    describe("Mirror and Arrays") {
+      
+      let records = Records(name: ["One", "Two"], maybeIds: [1, nil])
+      let mirror = Mirror(records)
+      
+      it("can get types") {
+        struct Records {
+          let name: [String]
+          let maybeIds: [Int?]
+        }
+
+        let types = mirror.types
+        let stringTypes = types.map { "\($0)" }
+        expect(stringTypes) == ["Swift.Array<Swift.String>", "Swift.Array<Swift.Optional<Swift.Int>>"]
+      }
+      
+      
+      xit("can get types names with short style") {
+        let typesName = mirror.typesShortName
+        expect(typesName) == ["[String]", "[Int?]"]
+      }
+
+    }
   }
 }

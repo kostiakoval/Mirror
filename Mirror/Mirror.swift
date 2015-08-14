@@ -48,8 +48,7 @@ public struct Mirror<T> {
   /// Instance type short name, just a type name, without Module
   public var shortName: String {
     let name = "\(instance.dynamicType)"
-    let shortName = name.convertOptionals()
-    return shortName.pathExtension
+    return name.sortNameStyle
   }
   
 }
@@ -114,7 +113,10 @@ extension Mirror {
   
   /// Short style for type names
   public var typesShortName: [String] {
-    return map(self) { "\($0.type)".convertOptionals().pathExtension }
+    return map(self) {
+      let conv = "\($0.type)".sortNameStyle
+      return conv //.pathExtension
+    }
   }
   
   /// Mirror types for every children property
@@ -196,12 +198,46 @@ extension String {
   
   func convertOptionals() -> String {
     var x = self
-    while let range = x.rangeOfString("Optional<") {
-      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
-        x.replaceRange(endOfOptional, with: "?")
+    while let start = x.rangeOfString("Optional<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let subType = x[subtypeRange]
+        x.replaceRange(end, with: "?")
+        x.replaceRange(subtypeRange, with: subType.sortNameStyle)
       }
-      x.removeRange(range)
+      x.removeRange(start)
     }
     return x
   }
+  
+  func convertArray() -> String {
+    var x = self
+    while let start = x.rangeOfString("Array<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let arrayType = x[subtypeRange]
+        x.replaceRange(end, with: "]")
+        x.replaceRange(subtypeRange, with: arrayType.sortNameStyle)
+
+      }
+      x.replaceRange(start, with:"[")
+    }
+    return x
+  }
+  
+  func removeTypeModuleName() -> String {
+    var x = self
+    if let range = self.rangeOfString(".") {
+      x = self.substringFromIndex(range.endIndex)
+    }
+    return x
+  }
+  
+  var sortNameStyle: String {
+    return self
+      .removeTypeModuleName()
+      .convertOptionals()
+      .convertArray()
+  }
+  
 }
