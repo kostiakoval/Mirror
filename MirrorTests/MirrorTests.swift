@@ -147,5 +147,34 @@ class MirrorSpec: QuickSpec {
         }
       }
     }
+
+    describe("Mirror type") {
+      it("Optional Type") {
+        let x: Int? = 10
+        expect(Mirror(x).isOptional) == true
+        expect(Mirror(10).isOptional) == false
+      }
+      
+      it("Array Type") {
+        let ar: [Int]? = [1, 2]
+        expect(Mirror([1, 2]).isArray) == true
+        expect(Mirror(ar).isArray) == false // It's Optional
+      }
+      
+      it("Dictionary Type") {
+        let dic: [String: Int]? = ["One" : 1]
+        expect(Mirror(["Two" : 2]).isDictionary) == true
+        expect(Mirror(dic).isDictionary) ==  false // It's Optional
+      }
+      
+      it("Set Type") {
+        let set: Set<Int> = [1]
+        let maybeSet: Set<Int>? = [1]
+        
+        expect(Mirror(set).isSet) == true
+        expect(Mirror(maybeSet).isSet) ==  false // It's Optional
+      }
+    }
+    
   }
 }
