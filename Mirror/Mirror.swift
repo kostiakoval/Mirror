@@ -54,6 +54,7 @@ public struct Mirror<T> {
   
 }
 
+// MARK: - Type detection
 extension Mirror {
 
   public var isClass: Bool {
@@ -91,9 +92,11 @@ extension Mirror {
   public var memorySize: Int {
     return sizeofValue(instance)
   }
-  
-  //MARK: - Children Inpection
-  
+}
+
+//MARK: - Children Inpection
+extension Mirror {
+
   /// Properties Names
   public var names: [String] {
     return map(self) { $0.name }
@@ -118,8 +121,10 @@ extension Mirror {
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
-  
-  //MARK: - Quering
+}
+
+//MARK: - Quering
+extension Mirror {
   
   /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
@@ -133,7 +138,11 @@ extension Mirror {
     let res = findFirst(self) { $0.name == key }
     return res.flatMap { $0.value as? U }
   }
-  
+}
+
+// MARK: - Converting
+extension Mirror {
+
   /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
   public var toDictionary: [String : Any] {
     
@@ -158,6 +167,7 @@ extension Mirror {
   }
 }
 
+// MARK: - CollectionType
 extension Mirror : CollectionType, SequenceType {
   
   public func generate() -> IndexingGenerator<[MirrorItem]> {
@@ -177,7 +187,7 @@ extension Mirror : CollectionType, SequenceType {
   }
 }
 
-
+// MARK: - Mirror helpers
 extension String {
   
   func contains(x: String) -> Bool {
