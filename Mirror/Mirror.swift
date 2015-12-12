@@ -133,7 +133,6 @@ public struct Mirror<T> {
 }
 
 extension Mirror : CollectionType, SequenceType {
-  
   public func generate() -> IndexingGenerator<[MirrorItem]> {
     return children.generate()
   }
