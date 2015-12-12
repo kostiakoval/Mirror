@@ -66,8 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print(item)
     }
   }
-
-  
 }
 
 
