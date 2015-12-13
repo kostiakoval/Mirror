@@ -9,11 +9,12 @@
 **Mirror** - Swift objects Reflection API. It's 100% Swift, no Objc runtime.  
 It's possible to do reflection of Swift object. And it doesn’t need to be hard.
 
-##Features
-- [x] 100% Pure Swift implementation
-- [x] Easy to use
-- [x] Powerful
-- [ ] Even more Powerful (Coming soon)
+## Features
+- [x] 100% Pure Swift implementation.
+- [x] Does not reimplement any existing Swift types. Extensions only.
+- [x] Easy to use.
+- [x] Powerful.
+- [ ] Even more Powerful. (Coming soon)
 
 ## Usage
 If you want to try it, there is a demo Playground available, just run 
@@ -22,12 +23,12 @@ If you want to try it, there is a demo Playground available, just run
 pod try Mirror
 ```
 
-###Create a mirror for an instance   
+### Create a mirror for an instance
 
 ```swift
 struct Person {
   var name: String
-  var age: Int
+  var age:  Int
 }
 
 let person = Person(name: "Jon", age: 27)
@@ -41,10 +42,6 @@ let mirror = Mirror(reflecting: person)
 
 mirror.subjectTypeLabel
 // "Person"
-
-[//]: # (// Not working for now)
-[//]: # (mirror.memorySize)
-[//]: # (// 32)
 
 mirror.subjectType == .Some(.Class)
 // false
@@ -73,9 +70,9 @@ Dictionary<String, Any>(mirror: mirror)
 // ["age": 27, "name": "Jon"]
 ```
 
-### Mirror's children array is a `CollectionType`
-All the CollectionType methods are available for use with mirror  
-Iterating, count, map, filter and other
+### Mirror's `children` property is a `CollectionType`
+All the CollectionType methods are available for use with the `mirror.children`.
+Iterating, count, map, filter and other.
 
 ```swift
 // Iterate over its `Mirror.Child` children
