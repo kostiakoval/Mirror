@@ -83,8 +83,9 @@ for child in mirror.children {
 // (Optional("name"), "Jon")
 // (Optional("age"), 27)
 
-let children = mirror.children // Array of Mirror.Child
 let index = AnyForwardIndex(0)
+
+let children = mirror.children // AnyForwardCollection of Mirror.Child
 let firstKid = children[index]
 // (label: Optional("name"), value: "Jon")
 
