@@ -27,8 +27,8 @@ pod try Mirror
 
 ```swift
 struct Person {
-  var name: String
-  var age:  Int
+    var name: String
+    var age:  Int
 }
 
 let person = Person(name: "Jon", age: 27)
