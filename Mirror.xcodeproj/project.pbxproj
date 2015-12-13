@@ -151,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				B5F3D7F41B50579100528EF4 /* Mirror.h */,
-				B5F3D8091B505ABF00528EF4 /* Helpers.swift */,
 				B5F3D80A1B505ABF00528EF4 /* Mirror.swift */,
+				B5F3D8091B505ABF00528EF4 /* Helpers.swift */,
 				B5F3D8111B50F51C00528EF4 /* ObjcRuntime */,
 				B5F3D7F21B50579100528EF4 /* Supporting Files */,
 			);

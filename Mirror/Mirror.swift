@@ -34,13 +34,14 @@ public extension Mirror {
     public var types: [Any.Type] {
         return self.children.map { $0.value.dynamicType }
     }
-
     
-    // FIXME: Invalid `sizeof` return value?
-    // Very interesting behaviour... In tests applying `sizeofValue` to each value returned 32x2 (64).
+// FIXME: Invalid `sizeof` return value?
+// In tests applying `sizeofValue` to each value returned 32x2 (64).
+    
 //    /// Size of value in memory.
 //    ///
-//    /// - Remark: Try using `sizeof()` or `sizeofValue()` insted.
+//    /// - Remark: Try using `sizeof()` or `sizeofValue()` 
+//    ///           on mirrored values or type insted.
 //    ///
 //    /// - Complexity: `O(n)`, where `n`
 //    ///               is a number of properties.
@@ -62,19 +63,6 @@ public extension Mirror {
     public func getValue<U>(forKey key: String) -> U? {
         let res = findFirst(self.children) { $0.label == key }
         return res.flatMap { $0.value as? U }
-    }
-}
-
-public extension Dictionary where Key: StringLiteralConvertible {
-    /// Initialize from mirror with [PropertyName : PropertyValue] notation.
-    public init(mirror: Mirror) {
-        self = [:] // self.init()
-        for item in mirror.children {
-            guard let label = item.label as? Key,
-                      value = item.value as? Value else { continue }
-            
-            self[label] = value
-        }
     }
 }
 
