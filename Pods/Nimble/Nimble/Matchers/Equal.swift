@@ -7,8 +7,16 @@ import Foundation
 public func equal<T: Equatable>(expectedValue: T?) -> NonNilMatcherFunc<T> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
-        let matches = actualExpression.evaluate() == expectedValue && expectedValue != nil
-        if expectedValue == nil || actualExpression.evaluate() == nil {
+        let actualValue = try actualExpression.evaluate()
+        
+        if let actualValue = actualValue as? AnyForwardIndex, expectedValue = expectedValue as? AnyForwardIndex {
+            print(actualValue)
+            print(expectedValue)
+            print(actualValue == expectedValue)
+        }
+        
+        let matches = actualValue == expectedValue && expectedValue != nil
+        if expectedValue == nil || actualValue == nil {
             if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
@@ -25,13 +33,14 @@ public func equal<T: Equatable>(expectedValue: T?) -> NonNilMatcherFunc<T> {
 public func equal<T: Equatable, C: Equatable>(expectedValue: [T: C]?) -> NonNilMatcherFunc<[T: C]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
-        if expectedValue == nil || actualExpression.evaluate() == nil {
+        let actualValue = try actualExpression.evaluate()
+        if expectedValue == nil || actualValue == nil {
             if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
             return false
         }
-        return expectedValue! == actualExpression.evaluate()!
+        return expectedValue! == actualValue!
     }
 }
 
@@ -40,13 +49,14 @@ public func equal<T: Equatable, C: Equatable>(expectedValue: [T: C]?) -> NonNilM
 public func equal<T: Equatable>(expectedValue: [T]?) -> NonNilMatcherFunc<[T]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
-        if expectedValue == nil || actualExpression.evaluate() == nil {
+        let actualValue = try actualExpression.evaluate()
+        if expectedValue == nil || actualValue == nil {
             if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
             return false
         }
-        return expectedValue! == actualExpression.evaluate()!
+        return expectedValue! == actualValue!
     }
 }
 
@@ -71,7 +81,7 @@ private func equal<T>(expectedValue: Set<T>?, stringify: Set<T>? -> String) -> N
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
 
         if let expectedValue = expectedValue {
-            if let actualValue = actualExpression.evaluate() {
+            if let actualValue = try actualExpression.evaluate() {
                 failureMessage.actualValue = "<\(stringify(actualValue))>"
 
                 if expectedValue == actualValue {
@@ -139,7 +149,7 @@ public func !=<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]
 extension NMBObjCMatcher {
     public class func equalMatcher(expected: NSObject) -> NMBMatcher {
         return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-            return equal(expected).matches(actualExpression, failureMessage: failureMessage)
+            return try! equal(expected).matches(actualExpression, failureMessage: failureMessage)
         }
     }
 }

@@ -26,78 +26,75 @@ pod try Mirror
 
 ```swift
 struct Person {
-  let name: String
+  var name: String
   var age: Int
 }
 
-var person = Person(name: "Jon", age: 27)
-let mirror = Mirror(person)
+let person = Person(name: "Jon", age: 27)
+let mirror = Mirror(reflecting: person)
 ```
 
-### Inspect it  
+### Inspect it
 
 ```swift
-//Get information about the type of an instance
+// Get information about the type of an instance
 
-mirror.name
-//"MirrorTest.Person"
+mirror.subjectTypeLabel
+// "Person"
 
-mirror.shortName
-//Person
+[//]: # (// Not working for now)
+[//]: # (mirror.memorySize)
+[//]: # (// 32)
 
-mirror.memorySize
-// 32
+mirror.subjectType == .Some(.Class)
+// false
 
-mirror.isClass
-//false
-
-mirror.isStruct
-//true
+mirror.subjectType == .Some(.Struct)
+// true
 ```
 
 ### Type Properties Inspection  
 Get information about content of the type, its properties
 
 ```swift
-mirror.names
-//["name", "age"]
+mirror.labels
+// ["name", "age"]
 
 mirror.values
-//["Jon", 27]
+// ["Jon", 27]
 
 mirror.types
-//[Swift.String, Swift.Int]
+// [Swift.String.Type, Swift.Int.Type]
 
-mirror.typesShortName
-//["String", "Int"]
+mirror["name"] // "Jon"
+mirror["age"]  // 27
 
-mirror["name"] //"Jon"
-mirror["age"]  //27
-
-mirror.toDictionary
-//["age": 27, "name": "Jon"]
+Dictionary<String, Any>(mirror: mirror)
+// ["age": 27, "name": "Jon"]
 ```
 
-### Mirror is a CollectionType  
+### Mirror's children array is a `CollectionType`
 All the CollectionType methods are available for use with mirror  
-Iterating, count, map, filter and other  
+Iterating, count, map, filter and other
 
 ```swift
-// Iterate over its children MirrorItems
-for item in mirror {
-  println(item)
+// Iterate over its `Mirror.Child` children
+for child in mirror.children {
+    print(child)
 }
-//name: Swift.String = Jon
-//age: Swift.Int = 27
 
-let children = mirror.children //Array of MirrorItem
-let firstKid = children[0]
-//{name: "name", type: Swift.String, value: "Jon" }
+// (Optional("name"), "Jon")
+// (Optional("age"), 27)
 
-var mirP = mirror[1]
-mirP.name   // "age"
-mirP.value  // 27
-mirP.type   // Swift.Int
+let children = mirror.children // Array of Mirror.Child
+let index = AnyForwardIndex(0)
+let firstKid = children[index]
+// (label: Optional("name"), value: "Jon")
+
+var mirP = mirror[index.successor()]
+mirP.label               // Optional("age")
+mirP.value               // 27
+mirP.value.dynamicType   // Swift.Int.Type
 ```
 
 ## Installation

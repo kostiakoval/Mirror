@@ -22,18 +22,17 @@ struct Person {
   var age: Int
 }
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
+
   var window: UIWindow?
-  
+
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
+
     inspectPerson()
         return true
   }
-  
+
   func inspectPerson() {
     let person = Person(name: "Jon", age: 27)
     let mirror = Mirror(person)
@@ -42,30 +41,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print(mirror.values)
     print(mirror["name"])
   }
-  
+
   func inspectElse() {
     let a = A(name: "", val: 10, maybe: nil, tup: (1, 2),  tupNam: (x: 1, y: 2))
     let mirror = Mirror(a)
-    
+
     mirror.count
-    
+
     mirror.names
     mirror.values
-    
+
     let tt = mirror[4]
     tt.name
     let val = tt.value as! (x: Int, y: Int)
     val.x
-    
+
     let namedTup :(x: Int, y: Int)?
     namedTup = mirror.get("maybe")
     print(namedTup)
-    
+
     //let child = mirror.children
     for item in mirror {
       print(item)
     }
   }
 }
-
-
