@@ -43,10 +43,10 @@ let mirror = Mirror(reflecting: person)
 mirror.subjectTypeLabel
 // "Person"
 
-mirror.subjectType == .Some(.Class)
+mirror.displayStyle == .Some(.Class)
 // false
 
-mirror.subjectType == .Some(.Struct)
+mirror.displayStyle == .Some(.Struct)
 // true
 ```
 
