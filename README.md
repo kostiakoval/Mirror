@@ -89,7 +89,7 @@ let children = mirror.children // AnyForwardCollection of Mirror.Child
 let firstKid = children[index]
 // (label: Optional("name"), value: "Jon")
 
-var mirP = mirror[index.successor()]
+let mirP = mirror.children[index.successor()]
 mirP.label               // Optional("age")
 mirP.value               // 27
 mirP.value.dynamicType   // Swift.Int.Type
