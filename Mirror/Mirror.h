@@ -3,7 +3,7 @@
 //  Mirror
 //
 //  Created by Kostiantyn Koval on 10/07/15.
-//  Copyright (c) 2015 CocoaPods. All rights reserved.
+//  Copyright (c) 2015 Kostiantyn Koval. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,7 +2,7 @@
 //  Helpers.swift
 //  Mirror
 //
-//  Created by Kostiantyn Koval on 05/07/15.
+//  Created by Ivan Trubach on 12/12/15.
 //
 //
 

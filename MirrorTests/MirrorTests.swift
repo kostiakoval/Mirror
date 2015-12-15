@@ -3,7 +3,6 @@
 //  MirrorTests
 //
 //  Created by Kostiantyn Koval on 10/07/15.
-//  Copyright (c) 2015 CocoaPods. All rights reserved.
 //
 
 @exported import Quick

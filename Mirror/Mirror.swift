@@ -2,11 +2,9 @@
 //  Mirror.swift
 //  Mirror
 //
-//  Created by Ivan Trubach on 12/12/15.
+//  Created by Kostiantyn Koval on 05/07/15.
 //
 //
-
-import Swift
 
 // MARK: Type Info
 
