@@ -19,7 +19,7 @@ It's possible to do reflection of Swift object. And it doesn’t need to be hard
 ## Usage
 If you want to try it, there is a demo Playground available, just run 
 
-```
+```ruby
 pod try Mirror
 ```
 
