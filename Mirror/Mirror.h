@@ -13,7 +13,3 @@ FOUNDATION_EXPORT double MirrorVersionNumber;
 
 //! Project version string for Mirror.
 FOUNDATION_EXPORT const unsigned char MirrorVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Mirror/PublicHeader.h>
-
-

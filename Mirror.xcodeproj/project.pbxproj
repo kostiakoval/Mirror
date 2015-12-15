@@ -17,7 +17,7 @@
 		B5F3D83D1B50FB3B00528EF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F3D83C1B50FB3B00528EF4 /* Images.xcassets */; };
 		B5F3D83E1B50FB8100528EF4 /* Mirror.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F3D7F01B50579100528EF4 /* Mirror.framework */; };
 		B5F3D83F1B50FB8100528EF4 /* Mirror.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5F3D7F01B50579100528EF4 /* Mirror.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DD95F09044DDD7167A03E2C7 /* Pods_MirrorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A74624785490379EB69365 /* Pods_MirrorTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DD95F09044DDD7167A03E2C7 /* Pods_MirrorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A74624785490379EB69365 /* Pods_MirrorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +55,8 @@
 		2A24F9DA61D6085222BEFC9E /* Pods-MirrorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MirrorTests/Pods-MirrorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38655085F436530DA0A592AD /* Pods_Mirror_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mirror_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436B6CAEFB5068A8D66BBFE5 /* Pods_Mirror_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mirror_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77931A421C1CACB10081592B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Pods/../build/Debug-iphoneos/Pods-MirrorTests/Nimble.framework"; sourceTree = "<group>"; };
+		77931A441C1CACB40081592B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "Pods/../build/Debug-iphoneos/Pods-MirrorTests/Quick.framework"; sourceTree = "<group>"; };
 		8A2F702DE49FD9A40531D887 /* Pods-MirrorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MirrorTests/Pods-MirrorTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5F3D7F01B50579100528EF4 /* Mirror.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mirror.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F3D7F31B50579100528EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,10 +150,10 @@
 		B5F3D7F11B50579100528EF4 /* Mirror */ = {
 			isa = PBXGroup;
 			children = (
-				B5F3D8111B50F51C00528EF4 /* ObjcRuntime */,
-				B5F3D8091B505ABF00528EF4 /* Helpers.swift */,
-				B5F3D80A1B505ABF00528EF4 /* Mirror.swift */,
 				B5F3D7F41B50579100528EF4 /* Mirror.h */,
+				B5F3D80A1B505ABF00528EF4 /* Mirror.swift */,
+				B5F3D8091B505ABF00528EF4 /* Helpers.swift */,
+				B5F3D8111B50F51C00528EF4 /* ObjcRuntime */,
 				B5F3D7F21B50579100528EF4 /* Supporting Files */,
 			);
 			path = Mirror;
@@ -211,6 +213,8 @@
 		F2EE3D9ACBA08BB240C8D256 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77931A441C1CACB40081592B /* Quick.framework */,
+				77931A421C1CACB10081592B /* Nimble.framework */,
 				38655085F436530DA0A592AD /* Pods_Mirror_Example.framework */,
 				436B6CAEFB5068A8D66BBFE5 /* Pods_Mirror_Tests.framework */,
 				C7A74624785490379EB69365 /* Pods_MirrorTests.framework */,
@@ -539,6 +543,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-MirrorTests",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -566,6 +574,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-MirrorTests",
+				);
 				INFOPLIST_FILE = Mirror/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
