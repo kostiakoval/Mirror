@@ -1,4 +1,5 @@
 //: Playground - noun: a place where people can play
+import Mirror
 
 struct Person {
   let name: String
@@ -6,7 +7,7 @@ struct Person {
 }
 
 var person = Person(name: "Jon", age: 27)
-let mirror = Mirror(person)
+let mirror = Mirror(reflecting: person)
 
 //: ## Type inspection
 //: Get information about the type of an instance
