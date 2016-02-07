@@ -20,10 +20,10 @@ mirror.shortName
 mirror.memorySize
 // 32
 
-mirror.isClass
-//false
-
-mirror.isStruct
+//mirror.isClass
+////false
+//
+//mirror.isStruct
 //true
 
 //: ## Type Properties Inpection
@@ -53,7 +53,7 @@ mirror.toDictionary
 
 // Iterate over it's children MirrorItems
 for item in mirror {
-  println(item)
+  print(item)
 }
 //name: Swift.String = Jon
 //age: Swift.Int = 27

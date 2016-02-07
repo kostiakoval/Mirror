@@ -45,21 +45,21 @@ class MirrorSpec: QuickSpec {
         expect(mirror.memorySize) == 32 // sizeof(String) + sizeof(Int)
       }
       
-      it("can check if it's a class") {
-        expect(mirror.isClass) == false
-        expect(Mirror("String").isClass) == false
-        expect(Mirror(NSObject()).isClass) == true
+//      it("can check if it's a class") {
+//        expect(mirror.isClass) == false
+//        expect(Mirror("String").isClass) == false
+//        expect(Mirror(NSObject()).isClass) == true
+//
+//        class A { }
+//        expect(Mirror(A()).isClass) == true
+//      }
+//      
+//      it("can check if it's a struct ") {
+//        expect(mirror.isStruct) == true
+//        struct B { }
+//        expect(Mirror(B()).isStruct) == true
+//      }
 
-        class A { }
-        expect(Mirror(A()).isClass) == true
-      }
-      
-      it("can check if it's a struct ") {
-        expect(mirror.isStruct) == true
-        struct B { }
-        expect(Mirror(B()).isStruct) == true
-      }
-      
 //MARK: - Children info
       
       it("can get names") {

@@ -39,15 +39,15 @@ class MirrorSimpleTypeSpec: QuickSpec {
         expect(mirrorStr.memorySize) == sizeof(String)
       }
       
-      it("can check if it's a class") {
-        expect(mirrorInt.isClass) == false
-        expect(mirrorStr.isClass) == false
-      }
-      
-      it("can check if it's a struct ") {
-        expect(mirrorInt.isStruct) == true
-        expect(mirrorStr.isStruct) == true
-      }
+//      it("can check if it's a class") {
+//        expect(mirrorInt.isClass) == false
+//        expect(mirrorStr.isClass) == false
+//      }
+//      
+//      it("can check if it's a struct ") {
+//        expect(mirrorInt.isStruct) == true
+//        expect(mirrorStr.isStruct) == true
+//      }
     }
     
     describe("Mirror Children") {
@@ -99,8 +99,8 @@ class MirrorSimpleTypeSpec: QuickSpec {
         }
         
         it("has count") {
-          expect(count(mirrorInt)) == 0
-          expect(count(mirrorStr)) == 0
+          expect(mirrorInt.count) == 0
+          expect(mirrorStr.count) == 0
         }
       }
     }

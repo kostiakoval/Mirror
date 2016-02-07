@@ -185,9 +185,9 @@ extension Mirror : CollectionType, SequenceType {
   }
 
   public subscript (i: Int) -> MirrorItem {
-//    let index = mirror.children.startIndex.advancedBy(IntMax(i))
-//    let child = mirror.children[index]
-    return MirrorItem(name: "", type: Any.self, value: 10)
+    let index = mirror.children.startIndex.advancedBy(IntMax(i))
+    let child = mirror.children[index]
+    return MirrorItem(name: child.label ?? "", type: child.value.dynamicType, value: child.value)
 //    return MirrorItem(mirror[i])
   }
 }
