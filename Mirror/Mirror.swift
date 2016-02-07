@@ -48,12 +48,12 @@ public struct Mirror<T> {
   /// Instance type short name, just a type name, without Module
   public var shortName: String {
     let name = "\(instance.dynamicType)"
-    let shortName = name.convertOptionals()
-    return shortName.pathExtension
+    return name.sortNameStyle
   }
   
 }
 
+// MARK: - Type detection
 extension Mirror {
 
   public var isClass: Bool {
@@ -91,9 +91,11 @@ extension Mirror {
   public var memorySize: Int {
     return sizeofValue(instance)
   }
-  
-  //MARK: - Children Inpection
-  
+}
+
+//MARK: - Children Inpection
+extension Mirror {
+
   /// Properties Names
   public var names: [String] {
     return map(self) { $0.name }
@@ -111,15 +113,20 @@ extension Mirror {
   
   /// Short style for type names
   public var typesShortName: [String] {
-    return map(self) { "\($0.type)".convertOptionals().pathExtension }
+    return map(self) {
+      let conv = "\($0.type)".sortNameStyle
+      return conv //.pathExtension
+    }
   }
   
   /// Mirror types for every children property
   public var children: [MirrorItem] {
     return map(self) { $0 }
   }
-  
-  //MARK: - Quering
+}
+
+//MARK: - Quering
+extension Mirror {
   
   /// Returns a property value for a property name
   public subscript (key: String) -> Any? {
@@ -133,7 +140,11 @@ extension Mirror {
     let res = findFirst(self) { $0.name == key }
     return res.flatMap { $0.value as? U }
   }
-  
+}
+
+// MARK: - Converting
+extension Mirror {
+
   /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
   public var toDictionary: [String : Any] {
     
@@ -158,6 +169,7 @@ extension Mirror {
   }
 }
 
+// MARK: - CollectionType
 extension Mirror : CollectionType, SequenceType {
   
   public func generate() -> IndexingGenerator<[MirrorItem]> {
@@ -177,7 +189,7 @@ extension Mirror : CollectionType, SequenceType {
   }
 }
 
-
+// MARK: - Mirror helpers
 extension String {
   
   func contains(x: String) -> Bool {
@@ -186,12 +198,46 @@ extension String {
   
   func convertOptionals() -> String {
     var x = self
-    while let range = x.rangeOfString("Optional<") {
-      if let endOfOptional = x.rangeOfString(">", range: range.startIndex..<x.endIndex) {
-        x.replaceRange(endOfOptional, with: "?")
+    while let start = x.rangeOfString("Optional<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let subType = x[subtypeRange]
+        x.replaceRange(end, with: "?")
+        x.replaceRange(subtypeRange, with: subType.sortNameStyle)
       }
-      x.removeRange(range)
+      x.removeRange(start)
     }
     return x
   }
+  
+  func convertArray() -> String {
+    var x = self
+    while let start = x.rangeOfString("Array<") {
+      if let end = x.rangeOfString(">", range: start.startIndex..<x.endIndex) {
+        let subtypeRange = start.endIndex..<end.startIndex
+        let arrayType = x[subtypeRange]
+        x.replaceRange(end, with: "]")
+        x.replaceRange(subtypeRange, with: arrayType.sortNameStyle)
+
+      }
+      x.replaceRange(start, with:"[")
+    }
+    return x
+  }
+  
+  func removeTypeModuleName() -> String {
+    var x = self
+    if let range = self.rangeOfString(".") {
+      x = self.substringFromIndex(range.endIndex)
+    }
+    return x
+  }
+  
+  var sortNameStyle: String {
+    return self
+      .removeTypeModuleName()
+      .convertOptionals()
+      .convertArray()
+  }
+  
 }
