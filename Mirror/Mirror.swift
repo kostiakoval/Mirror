@@ -113,7 +113,7 @@ extension Mirror {
 
   /// Short style for type names
   public var typesShortName: [String] {
-    return map(self) {
+    return map {
       let conv = "\($0.type)".sortNameStyle
       return conv //.pathExtension
     }
