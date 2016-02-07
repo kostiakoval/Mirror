@@ -19,7 +19,7 @@
 		B5F3D83D1B50FB3B00528EF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F3D83C1B50FB3B00528EF4 /* Images.xcassets */; };
 		B5F3D83E1B50FB8100528EF4 /* Mirror.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F3D7F01B50579100528EF4 /* Mirror.framework */; };
 		B5F3D83F1B50FB8100528EF4 /* Mirror.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5F3D7F01B50579100528EF4 /* Mirror.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DD95F09044DDD7167A03E2C7 /* Pods_MirrorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A74624785490379EB69365 /* Pods_MirrorTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DD95F09044DDD7167A03E2C7 /* Pods_MirrorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A74624785490379EB69365 /* Pods_MirrorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

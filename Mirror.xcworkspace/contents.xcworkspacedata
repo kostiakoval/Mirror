@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Mirror.playground">
+      location = "group:/Users/konstantin/My_Projects/MyPods/Mirror/Mirror.playground">
+   </FileRef>
+   <FileRef
+      location = "group:AAAA.playground">
    </FileRef>
    <FileRef
       location = "group:Mirror.xcodeproj">

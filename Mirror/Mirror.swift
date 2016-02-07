@@ -13,11 +13,11 @@ public struct MirrorItem {
   public let type: Any.Type
   public let value: Any
 
-  init(_ tup: (String, MirrorType)) {
-    self.name = tup.0
-    self.type = tup.1.valueType
-    self.value = tup.1.value
-  }
+//  init(_ tup: (String, Swift.Mirror)) {
+//    self.name = tup.0
+//    self.type = tup.1.valueType
+//    self.value = tup.1.value
+//  }
 }
 
 extension MirrorItem : CustomStringConvertible {
@@ -30,12 +30,12 @@ extension MirrorItem : CustomStringConvertible {
 
 public struct Mirror<T> {
 
-  private let mirror: MirrorType
+  private let mirror: Swift.Mirror
   let instance: T
 
   public init (_ x: T) {
     instance = x
-    mirror = reflect(x)
+    mirror = Swift.Mirror(reflecting: x)
   }
 
   //MARK: - Type Info
@@ -56,13 +56,13 @@ public struct Mirror<T> {
 // MARK: - Type detection
 extension Mirror {
 
-  public var isClass: Bool {
-    return mirror.objectIdentifier != nil
-  }
-
-  public var isStruct: Bool {
-    return mirror.objectIdentifier == nil
-  }
+//  public var isClass: Bool {
+//    return mirror.objectIdentifier != nil
+//  }
+//
+//  public var isStruct: Bool {
+//    return mirror. == nil
+//  }
 
   public var isOptional: Bool {
     return name.hasPrefix("Swift.Optional<")
@@ -85,7 +85,7 @@ extension Mirror {
 
   /// Type properties count
   public var childrenCount: Int {
-    return mirror.count
+    return Int(mirror.children.count)
   }
 
   public var memorySize: Int {
@@ -181,11 +181,14 @@ extension Mirror : CollectionType, SequenceType {
   }
 
   public var endIndex: Int {
-    return mirror.count
+    return Int(mirror.children.count)
   }
 
   public subscript (i: Int) -> MirrorItem {
-    return MirrorItem(mirror[i])
+//    let index = mirror.children.startIndex.advancedBy(IntMax(i))
+//    let child = mirror.children[index]
+    return MirrorItem(name: "", type: Any.self, value: 10)
+//    return MirrorItem(mirror[i])
   }
 }
 
