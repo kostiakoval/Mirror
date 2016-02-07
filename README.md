@@ -1,4 +1,5 @@
-# Mirror
+![Mirror](https://raw.githubusercontent.com/kostiakoval/Mirror/master/Image/logo.png)
+
 
 [![CI Status](http://img.shields.io/travis/kostiakoval/Mirror.svg?style=flat)](https://travis-ci.org/kostiakoval/Mirror)
 [![Version](https://img.shields.io/cocoapods/v/Mirror.svg?style=flat)](http://cocoapods.org/pods/Mirror)
@@ -18,7 +19,7 @@ It's possible to do reflection of Swift object. And it doesn’t need to be hard
 ## Usage
 If you want to try it, there is a demo Playground available, just run 
 
-```
+```ruby
 pod try Mirror
 ```
 
@@ -117,6 +118,17 @@ To integrate Mirror into your Xcode project using Carthage, specify it in your C
 ```
 github "kostiakoval/Mirror"
 ```
+
+## Contribute
+
+Please open an issue with bugs and missing features, functionality or ideas for improvements.  
+Also you can contribute by following this guidelines:
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create pull request
 
 ## Author
 

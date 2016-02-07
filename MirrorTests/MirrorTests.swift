@@ -15,6 +15,11 @@ struct Person {
   var age: Int
 }
 
+struct Records {
+  let name: [String]
+  let maybeIds: [Int?]
+}
+
 class MirrorSpec: QuickSpec {
   override func spec() {
     
@@ -141,46 +146,86 @@ class MirrorSpec: QuickSpec {
           expect(item.value as? String ) == "Sara"
           expect(item.type is String.Type).to(beTrue())
         }
-        
       }
+    }
+
+    describe("Mirror type") {
+      it("Optional Type") {
+        let x: Int? = 10
+        expect(Mirror(x).isOptional) == true
+        expect(Mirror(10).isOptional) == false
+      }
+      
+      it("Array Type") {
+        let ar: [Int]? = [1, 2]
+        expect(Mirror([1, 2]).isArray) == true
+        expect(Mirror(ar).isArray) == false // It's Optional
+      }
+      
+      it("Dictionary Type") {
+        let dic: [String: Int]? = ["One" : 1]
+        expect(Mirror(["Two" : 2]).isDictionary) == true
+        expect(Mirror(dic).isDictionary) ==  false // It's Optional
+      }
+      
+      it("Set Type") {
+        let set: Set<Int> = [1]
+        let maybeSet: Set<Int>? = [1]
+        
+        expect(Mirror(set).isSet) == true
+        expect(Mirror(maybeSet).isSet) ==  false // It's Optional
+      }
+    }
+    
+    describe("Subtypes") {
+      it("Arrays name") {
+        let ar = [1, 2, 3]
+        let mirror = Mirror(ar)
+        expect(mirror.name) == "Swift.Array<Swift.Int>"
+      }
+      
+      it("Array shortName") {
+        let ar = [1, 2, 3]
+        let mirror = Mirror(ar)
+        expect(mirror.shortName) == "[Int]"
+      }
+      
+      it("handle Optionals name") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.name) == "Swift.Optional<Swift.Int>"
+      }
+
+      it("handle Optionals shortName") {
+        let x: Int? = 1
+        let mirror = Mirror(x)
+        expect(mirror.shortName) == "Int?"
+      }
+
+    }
+    
+    describe("Mirror and Arrays") {
+      
+      let records = Records(name: ["One", "Two"], maybeIds: [1, nil])
+      let mirror = Mirror(records)
+      
+      it("can get types") {
+        struct Records {
+          let name: [String]
+          let maybeIds: [Int?]
+        }
+
+        let types = mirror.types
+        let stringTypes = types.map { "\($0)" }
+        expect(stringTypes) == ["Swift.Array<Swift.String>", "Swift.Array<Swift.Optional<Swift.Int>>"]
+      }
+      
+      
+      xit("can get types names with short style") {
+        let typesName = mirror.typesShortName
+        expect(typesName) == ["[String]", "[Int?]"]
+      }
+
     }
   }
 }
-
-/*
-it("can get children mirrors") {
-
-
-}
-
-
-
-it("will eventually fail") {
-expect("time").toEventually( equal("done") )
-}
-
-context("these will pass") {
-
-it("can do maths") {
-expect(23) == 23
-}
-
-it("can read") {
-expect("🐮") == "🐮"
-}
-
-it("will eventually pass") {
-var time = "passing"
-
-dispatch_async(dispatch_get_main_queue()) {
-time = "done"
-}
-
-waitUntil { done in
-NSThread.sleepForTimeInterval(0.5)
-expect(time) == "done"
-
-done()
-}
-}
-}*/
