@@ -20,8 +20,8 @@ class MirrorSimpleTypeSpec: QuickSpec {
       //MARK: - Type Info
       
       it("can get its type name") {
-        expect(mirrorInt.name) == "Swift.Int"
-        expect(mirrorStr.name) == "Swift.String"
+        expect(mirrorInt.name) == "Int"
+        expect(mirrorStr.name) == "String"
       }
       
       it("can get its type short name") {

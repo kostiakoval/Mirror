@@ -30,7 +30,7 @@ class MirrorSpec: QuickSpec {
 //MARK: - Type Info
       
       it("can get its type name") {
-        expect(mirror.name) == "MirrorTests.Person"
+        expect(mirror.name) == "Person"
       }
       
       it("can get its type short name") {
@@ -76,7 +76,7 @@ class MirrorSpec: QuickSpec {
       it("can get types") {
         let types = mirror.types
         let stringTypes = types.map { "\($0)" }
-        expect(stringTypes) == ["Swift.String", "Swift.Int"]
+        expect(stringTypes) == ["String", "Int"]
       }
       
       it("can get types names with short style") {
@@ -181,7 +181,7 @@ class MirrorSpec: QuickSpec {
       it("Arrays name") {
         let ar = [1, 2, 3]
         let mirror = Mirror(ar)
-        expect(mirror.name) == "Swift.Array<Swift.Int>"
+        expect(mirror.name) == "Array<Int>"
       }
       
       it("Array shortName") {
@@ -192,8 +192,8 @@ class MirrorSpec: QuickSpec {
       
       it("handle Optionals name") {
         let x: Int? = 1
-        let mirror = Mirror(x)
-        expect(mirror.name) == "Swift.Optional<Swift.Int>"
+        let mirror = Mirror(x)        
+        expect(mirror.name) == "Optional<Int>"
       }
 
       it("handle Optionals shortName") {
@@ -217,7 +217,7 @@ class MirrorSpec: QuickSpec {
 
         let types = mirror.types
         let stringTypes = types.map { "\($0)" }
-        expect(stringTypes) == ["Swift.Array<Swift.String>", "Swift.Array<Swift.Optional<Swift.Int>>"]
+        expect(stringTypes) == ["Array<String>", "Array<Optional<Int>>"]
       }
       
       

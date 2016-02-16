@@ -65,19 +65,19 @@ extension Mirror {
 //  }
 
   public var isOptional: Bool {
-    return name.hasPrefix("Swift.Optional<")
+    return name.hasPrefix("Optional<")
   }
 
   public var isArray: Bool {
-    return name.hasPrefix("Swift.Array<")
+    return name.hasPrefix("Array<")
   }
 
   public var isDictionary: Bool {
-    return name.hasPrefix("Swift.Dictionary<")
+    return name.hasPrefix("Dictionary<")
   }
 
   public var isSet: Bool {
-    return name.hasPrefix("Swift.Set<")
+    return name.hasPrefix("Set<")
   }
 }
 
